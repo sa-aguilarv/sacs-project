@@ -1,0 +1,5 @@
+# Ignore directories
+/.vscode
+/__pycache__
+/sacs-israel-repository
+/sacs-env
