@@ -82,7 +82,7 @@ def main():
             print("Invalid input: " + str(unsorted_list))
             raise SystemExit(0)
 
-    print("Entered lists were:")
+    print("Entered lists are:")
     print(validated_int_unsorted_lists)
     print(validated_str_unsorted_lists)
 

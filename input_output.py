@@ -55,16 +55,19 @@ def formatted_output(results: list):
             The results obtained from the differents comparisons. The results argument is list of Tuples, every Tuple contains: (algorith_name, sorted_list)
     """
 
-    header = "{0:^10}|{1:^20}|{2:^30}|"
-    row = "{algorithm:^10}|{address:^20X}|{lista!s:^30}|"
-    print(header.format("Algorithm", "Physical address", "List"))
+    header = "{0:^10}|{1:^20}|{2:^30}|{3:^30}"
+    row = "{algorithm:^10}|{address:^20X}|{lista!s:^30}|{time:^30}"
+    print(
+        header.format("Algorithm", "Physical address", "List",
+                      "Execution time"))
     for value in results:
         algorithm = value[0]
         sorted_list = value[1]
         print(
             row.format(algorithm=algorithm,
                        address=id(sorted_list),
-                       lista=sorted_list))
+                       lista=sorted_list["sorted_list"],
+                       time=sorted_list["elapsed_time"]))
 
 
 def parse_input() -> argparse.Namespace:
