@@ -10,7 +10,7 @@ import re
 
 PATTERN_SORTING_ALGORITHMS = "(sorting_algorithms)\s*=\s*([a-zA-Z]+(,\s?[a-zA-Z]*)*)"
 PATTERN_UNSORTED_LIST = "(unsorted_lists)\s*=\s*((\[(\w,?)+\])(\|\[(\w,?)+\])*)"
-PATTERN_ORDER = "(order)\s*=\s*(asc|desc)"
+PATTERN_ORDER = "(order)\s*=\s*([a-zA-Z]+)"
 PATTERNS_CONFIG_FILE = [
     PATTERN_SORTING_ALGORITHMS, PATTERN_UNSORTED_LIST, PATTERN_ORDER
 ]

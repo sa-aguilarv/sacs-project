@@ -39,7 +39,7 @@ def main():
         if sorting_algorithm not in valid_sorting_algorithms
     ]
     if len(invalid_sorting_algorithms) != 0:
-        print("ValueError: invalid sorting algorithm was entered: " +
+        print("\nValueError: invalid sorting algorithm was entered: " +
               str(invalid_sorting_algorithms))
         print("Valid sorting algorithms are: " + str(valid_sorting_algorithms))
         raise SystemExit(0)
@@ -75,7 +75,8 @@ def main():
             validated_str_unsorted_lists.append(unsorted_list)
         else:
             print(
-                "ValueError: each list's items must be of the same data type.")
+                "\nValueError: each list's items must be of the same data type."
+            )
             print("Invalid input: " + str(unsorted_list))
             raise SystemExit(0)
 
@@ -85,21 +86,27 @@ def main():
 
     # Validate sorting order config file data
     sorting_order = config_dict["order"]
-    print("\nSelected sorting order is: " + sorting_order + "\n")
 
     # Start sorting comparison
     validated_unsorted_lists = validated_int_unsorted_lists + validated_str_unsorted_lists
     results = []
     if sorting_order == "asc":
+        print("\nSelected sorting order is: " + sorting_order + "\n")
         for sorting_algorithm in validated_sorting_algorithms:
             for unsorted_list in validated_unsorted_lists:
                 output_dict = sa.sort(sorting_algorithm, unsorted_list)
                 results.append((sorting_algorithm, output_dict))
     elif sorting_order == "desc":
+        print("\nSelected sorting order is: " + sorting_order + "\n")
         for sorting_algorithm in validated_sorting_algorithms:
             for unsorted_list in validated_unsorted_lists:
                 output_dict = sad.sort(sorting_algorithm, unsorted_list)
                 results.append((sorting_algorithm, output_dict))
+    else:
+        print("\nValueError: selected sorting order is invalid: " +
+              sorting_order)
+        print("Valid inputs are: asc or desc")
+        raise SystemExit(0)
 
     # Print output
     io.formatted_output(results)
