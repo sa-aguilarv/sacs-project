@@ -13,7 +13,9 @@ from queue import Empty
 from warnings import catch_warnings
 import sorting_algorithms as sa
 import input_output as io
-import numpy as np
+import re
+
+PATTERN_STR_LIST = "[a-zA-Z]"
 
 
 def main():
@@ -23,8 +25,6 @@ def main():
     config_file_path = args.input
     #output_file_path = args.output
     config_dict = io.load_config_file(config_file_path)
-
-    results = []
 
     # Validate sorting algorithms config file data
     sorting_algorithms = config_dict["sorting_algorithms"].split(",")
@@ -53,33 +53,49 @@ def main():
 
     # Validate unsorted lists config file data
     unsorted_lists = config_dict["unsorted_lists"].split("|")
-    int_unsorted_lists = []
+    str_obj = re.compile(PATTERN_STR_LIST)
+
     str_unsorted_lists = []
-    for unsorted_list in range(0, len(unsorted_lists)):
-        try:
-            int_unsorted_lists.append(
-                list(np.array(unsorted_lists[unsorted_list])))
-            print(type(all(int_unsorted_lists)))
-        except:
-            print(unsorted_lists[unsorted_list])
-    truena
-    """for unsorted_list in unsorted_lists:
-        unsorted_list = unsorted_list.strip("[] ").split(",")
-        try:
-            int_unsorted_lists.append([int(element) for element in unsorted_list])
-        except:
-            str_unsorted_lists.append(element for element in unsorted_list)
-    print(int_unsorted_lists)
-    print(str_unsorted_lists)
+    int_unsorted_lists = []
+    for item in range(0, len(unsorted_lists)):
+        result = str_obj.search(unsorted_lists[item])
+        if result is None:
+            int_unsorted_lists.append(unsorted_lists[item])
+        else:
+            str_unsorted_lists.append(unsorted_lists[item])
 
-    for unsorted_list in unsorted_lists: # Cast string elements to integer to perform a correct sorting
+    validated_int_unsorted_lists = []
+    for unsorted_list in int_unsorted_lists:  # Cast string elements to integer to perform a correct sorting
         unsorted_list = unsorted_list.strip("[] ").split(",")
-        int_unsorted_list.append([int(element) for element in unsorted_list])
-    unsorted_lists = int_unsorted_list"""
+        validated_int_unsorted_lists.append(
+            [int(element) for element in unsorted_list])
 
-    for sorting_algorithm in sorting_algorithms:
-        for unsorted_list in unsorted_lists:
-            sorted_list = np.sort(sorting_algorithm, unsorted_list)
+    validated_str_unsorted_lists = []
+    for unsorted_list in str_unsorted_lists:
+        unsorted_list = unsorted_list.strip("[] ").split(",")
+        result = [re.findall("\d+", item) for item in unsorted_list]
+        if not any(result):
+            validated_str_unsorted_lists.append(unsorted_list)
+        else:
+            print(
+                "ValueError: each list's items must be of the same data type.")
+            print("Invalid input: " + str(unsorted_list))
+            raise SystemExit(0)
+
+    print("Entered lists were:")
+    print(validated_int_unsorted_lists)
+    print(validated_str_unsorted_lists)
+
+    # Validate sorting order config file data
+    sorting_order = config_dict["order"]
+    print("Selected sorting order is: " + sorting_order)
+
+    # Start sorting comparison
+    validated_unsorted_lists = validated_int_unsorted_lists + validated_str_unsorted_lists
+    results = []
+    for sorting_algorithm in validated_sorting_algorithms:
+        for unsorted_list in validated_unsorted_lists:
+            sorted_list = sa.sort(sorting_algorithm, unsorted_list)
             results.append((sorting_algorithm, sorted_list))
 
     io.formatted_output(results)

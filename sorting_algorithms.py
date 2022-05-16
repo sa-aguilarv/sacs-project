@@ -10,9 +10,9 @@ Functions:
 
 def sort(sorting_algorithm: str, unsorted_list: list) -> list:
     sorted_list = None
-    if sorting_algorithm.lower() == "quick":
+    if sorting_algorithm == "quick":
         sorted_list = quick_sort(unsorted_list)
-    elif sorting_algorithm.lower() == "bubble":
+    elif sorting_algorithm == "bubble":
         sorted_list = bubble_sort(unsorted_list)
     return sorted_list
 
@@ -43,7 +43,7 @@ def quick_sort(unsorted_list: list) -> list:
     return sorted_list
 
 
-def bubble_sort(unsorted_list: list)->list:
+def bubble_sort(unsorted_list: list) -> list:
     """ Sort a list of numbers, letters, and objects using the brute 
     force strategy called Bubble sort.
     This method identify the list's values type and sort them.
@@ -56,7 +56,7 @@ def bubble_sort(unsorted_list: list)->list:
     list
         a list of sorted values or objects
     """
-    
+
     sorted_list = unsorted_list.copy()
     list_length = len(unsorted_list)
     for i in range(list_length - 1):
@@ -82,4 +82,3 @@ def swap_values(i: int, j: int, list_to_swap: list):
     temp = list_to_swap[i]
     list_to_swap[i] = list_to_swap[j]
     list_to_swap[j] = temp
-

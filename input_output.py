@@ -11,7 +11,9 @@ import re
 PATTERN_SORTING_ALGORITHMS = "(sorting_algorithms)\s*=\s*([a-zA-Z]+(,\s?[a-zA-Z]*)*)"
 PATTERN_UNSORTED_LIST = "(unsorted_lists)\s*=\s*((\[(\w,?)+\])(\|\[(\w,?)+\])*)"
 PATTERN_ORDER = "(order)\s*=\s*(asc|desc)"
-PATTERNS_CONFIG_FILE = [PATTERN_SORTING_ALGORITHMS, PATTERN_UNSORTED_LIST, PATTERN_ORDER]
+PATTERNS_CONFIG_FILE = [
+    PATTERN_SORTING_ALGORITHMS, PATTERN_UNSORTED_LIST, PATTERN_ORDER
+]
 
 
 def load_config_file(file_path: str) -> dict:
@@ -59,7 +61,10 @@ def formatted_output(results: list):
     for value in results:
         algorithm = value[0]
         sorted_list = value[1]
-        print(row.format(algorithm=algorithm, address=id(sorted_list), lista=sorted_list))
+        print(
+            row.format(algorithm=algorithm,
+                       address=id(sorted_list),
+                       lista=sorted_list))
 
 
 def parse_input() -> argparse.Namespace:
@@ -71,9 +76,16 @@ def parse_input() -> argparse.Namespace:
     argparse.Namespace
         The object argparse.Namespace where the command line arguments are stored
     """
-    parser = argparse.ArgumentParser(description='Time comparison of several sorting algorithms')
-    parser.add_argument('-i', '--input', help='Config file path', required=True)
-    parser.add_argument('-o', '--output', help='Path and file name were the results are written. '
-    'If not indicated, the results are written in the standard output')
+    parser = argparse.ArgumentParser(
+        description='Time comparison of several sorting algorithms')
+    parser.add_argument('-i',
+                        '--input',
+                        help='Config file path',
+                        required=True)
+    parser.add_argument(
+        '-o',
+        '--output',
+        help='Path and file name were the results are written. '
+        'If not indicated, the results are written in the standard output')
 
     return parser.parse_args()
