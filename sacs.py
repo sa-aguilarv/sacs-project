@@ -118,14 +118,20 @@ def main():
                 elapsed_time = item[1]["elapsed_time"]
                 elapsed_time_list.append(elapsed_time)
         avg_elapsed_time = average(elapsed_time_list)
-        print("\n- " + sorting_algorithm + " average elapsed time: " +
+        print("\n- " + sorting_algorithm + " sort average elapsed time: " +
               str(avg_elapsed_time))
         avg_elapsed_time_list.append((sorting_algorithm, avg_elapsed_time))
 
     # Calculate min avg sorting time per sorting algorithm
+    names = []
+    times = []
     for item in avg_elapsed_time_list:
-        print(item[0])
-        truena
+        names.append(item[0])
+        times.append(item[1])
+    max_value = min(times)
+    index_max_value = times.index(max_value)
+    print("\nThe fastest sorting algorithm is " + str(names[index_max_value]) +
+          " sort with average elapsed time of " + str(max_value))
 
 
 if __name__ == "__main__":
