@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 """Access point to the Sorting Algorithm Comparison System (SACS)
     The SACS performs an elapsed time comparison between different sorting algorithms from different strategies.
+    ------------
     Functions
     ------------
     main:
@@ -17,13 +18,16 @@ PATTERN_STR_LIST = "[a-zA-Z]"
 
 def main():
     """Access point to the SACS system. It controls the program's workflow.
-    
-    Raises:
-        SystemExit: ValueError if invalid sorting algorithm was entered. Valid sorting algorithms are "selection", "bubble", "insertion", "merge", "quick".
-        SystemExit: ValueError because each list's items must be of the same data type.
-        SystemExit: ValueError if selected sorting order is invalid. Valid sorting orders are "asc" or "desc".
+    ------------
+    Raises
+    ------------
+    SystemExit: 
+        ValueError if invalid sorting algorithm was entered. Valid sorting algorithms are "selection", "bubble", "insertion", "merge", "quick".
+    SystemExit: 
+        ValueError because each list's items must be of the same data type.
+    SystemExit:
+        ValueError if selected sorting order is invalid. Valid sorting orders are "asc" or "desc".
     """
-
     # Load and read config file
     args = io.parse_input()
     config_file_path = args.input

@@ -1,14 +1,22 @@
 """ Sorting algorithms module
-This module contains all the sorting algorithms seen during the ToC course. It sorts in DESCENDING order.
-
-Functions:
-    sort: Sorts a list of numbers or letters using different sorting algorithms, which are called through other functions.
-    quick_sort: Sorts a list of numbers or letters using the divide and conquer strategy called Quick Sort.
-    bubble_sort: Sorts a list of numbers or letters using the brute force strategy called Bubble Sort.
-    selection_sort: Sorts a list of numbers or letters using the brute force strategy called Selection Sort.
-    insertion_sort: Sorts a list of numbers or letters using the decrease and conquer strategy called Insertion Sort.
-    merge_sort: Sorts a list of numbers or letters using the divide and conquer strategy called Merge Sort.
-    swap_values: Swaps the values of the index i and j in the list_to_swap list.
+    This module contains all the sorting algorithms seen during the ToC course. It sorts in DESCENDING order.
+    ------------
+    Functions
+    ------------
+    sort: 
+        Sorts a list of numbers or letters using different sorting algorithms, which are called through other functions.
+    quick_sort: 
+        Sorts a list of numbers or letters using the divide and conquer strategy called Quick Sort.
+    bubble_sort: 
+        Sorts a list of numbers or letters using the brute force strategy called Bubble Sort.
+    selection_sort: 
+        Sorts a list of numbers or letters using the brute force strategy called Selection Sort.
+    insertion_sort: 
+        Sorts a list of numbers or letters using the decrease and conquer strategy called Insertion Sort.
+    merge_sort: 
+        Sorts a list of numbers or letters using the divide and conquer strategy called Merge Sort.
+    swap_values: 
+        Swaps the values of the index i and j in the list_to_swap list.
 """
 
 import time
