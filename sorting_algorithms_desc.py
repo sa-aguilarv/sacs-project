@@ -1,24 +1,28 @@
-""" Sort algorithms module
-This module contains all the sort algorithms seen during the ToC course
+""" Sorting algorithms module
+This module contains all the sorting algorithms seen during the ToC course. It sorts in DESCENDING order.
+
 Functions:
-    Quick sort: Sort an array of number, letters, and objects using the 
-    quick sort strategy.
-    Bubble sort: Sort an array of number, letters, and objects using the
-    bubble sort strategy
+    sort: Sorts a list of numbers or letters using different sorting algorithms, which are called through other functions.
+    quick_sort: Sorts a list of numbers or letters using the divide and conquer strategy called Quick Sort.
+    bubble_sort: Sorts a list of numbers or letters using the brute force strategy called Bubble Sort.
+    selection_sort: Sorts a list of numbers or letters using the brute force strategy called Selection Sort.
+    insertion_sort: Sorts a list of numbers or letters using the decrease and conquer strategy called Insertion Sort.
+    merge_sort: Sorts a list of numbers or letters using the divide and conquer strategy called Merge Sort.
+    swap_values: Swaps the values of the index i and j in the list_to_swap list.
 """
 
 import time
 
 
 def sort(sorting_algorithm: str, unsorted_list: list) -> dict:
-    """_summary_
+    """Sorts a list of numbers or letters using different sorting algorithms, which are called through other functions.
 
     Args:
-        sorting_algorithm (str): _description_
-        unsorted_list (list): _description_
+        sorting_algorithm (str): defines the algorithm that will be used for sorting
+        unsorted_list (list): contains items of the same data type to be sorted
 
     Returns:
-        list: _description_
+        dict: it has two keys, (1) "sorted_lists" for the ordered lists and (2) "elapsed_time" for the execution time duration.
     """
     output_dict = None
     if sorting_algorithm == "quick":
@@ -42,20 +46,15 @@ def sort(sorting_algorithm: str, unsorted_list: list) -> dict:
 
 
 def quick_sort(unsorted_list: list) -> dict:
-    """Sort a list of numbers, letters, and objects using the brute force
-    strategy called Quick sort
-    This method identify the list's values types and sort them.
-    Parameters
-    ----------
-    unsorted_list: list
-        A is list with the elements to be sorted
-    Returns
-    ---------
-    list
-        a list of sorted values or objects
-        
-    """
+    """Sorts a list of numbers or letters using the divide and conquer strategy called Quick Sort.
+    This method identifies the list's values types and sorts them.
 
+    Args:
+        unsorted_list (list): contains items of the same data type to be sorted
+
+    Returns:
+        dict: it has two keys, (1) "sorted_lists" for the ordered lists and (2) "elapsed_time" for the execution time duration.
+    """
     sorted_list = unsorted_list.copy()
     sorted_list_length = len(sorted_list)
 
@@ -74,19 +73,14 @@ def quick_sort(unsorted_list: list) -> dict:
 
 
 def bubble_sort(unsorted_list: list) -> dict:
-    """ Sort a list of numbers, letters, and objects using the brute 
-    force strategy called Bubble sort.
-    This method identify the list's values type and sort them.
-    Parameters
-    ---------------
-    unsorted_list : list
-        unsorted_list is a list with the elements to be sorted
-    Returns
-    ---------------
-    list
-        a list of sorted values or objects
-    """
+    """Sorts a list of numbers or letters using the brute force strategy called Bubble Sort.
 
+    Args:
+        unsorted_list (list): contains items of the same data type to be sorted
+
+    Returns:
+        dict: it has two keys, (1) "sorted_lists" for the ordered lists and (2) "elapsed_time" for the execution time duration.
+    """
     sorted_list = unsorted_list.copy()
     list_length = len(unsorted_list)
 
@@ -103,13 +97,13 @@ def bubble_sort(unsorted_list: list) -> dict:
 
 
 def selection_sort(unsorted_list: list) -> dict:
-    """_summary_
+    """Sorts a list of numbers or letters using the brute force strategy called Selection Sort.
 
     Args:
-        unsorted_list (list): _description_
+        unsorted_list (list): contains items of the same data type to be sorted
 
     Returns:
-        dict: _description_
+        dict: it has two keys, (1) "sorted_lists" for the ordered lists and (2) "elapsed_time" for the execution time duration.
     """
     sorted_list = unsorted_list.copy()
     list_length = len(unsorted_list)
@@ -135,13 +129,13 @@ def selection_sort(unsorted_list: list) -> dict:
 
 
 def insertion_sort(unsorted_list: list) -> dict:
-    """_summary_
+    """Sorts a list of numbers or letters using the decrease and conquer strategy called Insertion Sort.
 
     Args:
-        unsorted_list (list): _description_
+        unsorted_list (list): contains items of the same data type to be sorted
 
     Returns:
-        dict: _description_
+        dict: it has two keys, (1) "sorted_lists" for the ordered lists and (2) "elapsed_time" for the execution time duration.
     """
     sorted_list = unsorted_list.copy()
     list_length = len(unsorted_list)
@@ -166,10 +160,10 @@ def insertion_sort(unsorted_list: list) -> dict:
 
 
 def merge_sort(myList):
-    """_summary_
+    """Sorts a list of numbers or letters using the divide and conquer strategy called Merge Sort.
 
     Args:
-        myList (_type_): _description_
+        unsorted_list (list): contains items of the same data type to be sorted.
     """
     if len(myList) > 1:
         mid = len(myList) // 2
@@ -212,17 +206,13 @@ def merge_sort(myList):
 
 
 def swap_values(i: int, j: int, list_to_swap: list):
-    """ Swap the values of the index i and j in the list_to_swap list
-        Parameters
-        ------------
-        i: int
-            index of the first value to swap
-        j: int
-            index of the second value to swap
-        list_to_swap: list
-            list where the swap will be performed
-    """
+    """Swaps the values of the index i and j in the list_to_swap list.
 
+    Args:
+        i (int): index of the first value to swap
+        j (int): index of the second value to swap
+        list_to_swap (list): list where the swap will be performed
+    """
     temp = list_to_swap[i]
     list_to_swap[i] = list_to_swap[j]
     list_to_swap[j] = temp

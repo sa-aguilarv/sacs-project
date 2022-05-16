@@ -1,10 +1,10 @@
 #! /usr/bin/env python
 """Access point to the Sorting Algorithm Comparison System (SACS)
-    The SACS performs a elapse time comparison between different Sorting algorithms from different strategies.
+    The SACS performs an elapsed time comparison between different sorting algorithms from different strategies.
     Functions
     ------------
     main:
-        Access point to the SACS system. It controls all the program flow.
+        Access point to the SACS system. It controls the program's workflow.
 """
 
 import sorting_algorithms as sa
@@ -16,6 +16,13 @@ PATTERN_STR_LIST = "[a-zA-Z]"
 
 
 def main():
+    """Access point to the SACS system. It controls the program's workflow.
+    
+    Raises:
+        SystemExit: ValueError if invalid sorting algorithm was entered. Valid sorting algorithms are "selection", "bubble", "insertion", "merge", "quick".
+        SystemExit: ValueError because each list's items must be of the same data type.
+        SystemExit: ValueError if selected sorting order is invalid. Valid sorting orders are "asc" or "desc".
+    """
 
     # Load and read config file
     args = io.parse_input()
@@ -62,7 +69,7 @@ def main():
             str_unsorted_lists.append(unsorted_lists[item])
 
     validated_int_unsorted_lists = []
-    for unsorted_list in int_unsorted_lists:  # Cast string elements to integer to perform a correct sorting
+    for unsorted_list in int_unsorted_lists:
         unsorted_list = unsorted_list.strip("[] ").split(",")
         validated_int_unsorted_lists.append(
             [int(element) for element in unsorted_list])
