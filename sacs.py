@@ -45,7 +45,7 @@ def main():
         raise SystemExit(0)
     if len(invalid_sorting_algorithms) == 0:
         validated_sorting_algorithms = sorting_algorithms
-        print("Selected sorting algorithms are: " +
+        print("\nSelected sorting algorithms are: " +
               str(validated_sorting_algorithms))
 
     # Validate unsorted lists config file data
@@ -79,13 +79,13 @@ def main():
             print("Invalid input: " + str(unsorted_list))
             raise SystemExit(0)
 
-    print("Entered lists are:")
+    print("\nEntered lists are:")
     print(validated_int_unsorted_lists)
     print(validated_str_unsorted_lists)
 
     # Validate sorting order config file data
     sorting_order = config_dict["order"]
-    print("Selected sorting order is: " + sorting_order)
+    print("\nSelected sorting order is: " + sorting_order + "\n")
 
     # Start sorting comparison
     validated_unsorted_lists = validated_int_unsorted_lists + validated_str_unsorted_lists
@@ -93,14 +93,39 @@ def main():
     if sorting_order == "asc":
         for sorting_algorithm in validated_sorting_algorithms:
             for unsorted_list in validated_unsorted_lists:
-                sorted_list = sa.sort(sorting_algorithm, unsorted_list)
-                results.append((sorting_algorithm, sorted_list))
+                output_dict = sa.sort(sorting_algorithm, unsorted_list)
+                results.append((sorting_algorithm, output_dict))
     elif sorting_order == "desc":
         for sorting_algorithm in validated_sorting_algorithms:
             for unsorted_list in validated_unsorted_lists:
-                sorted_list = sad.sort(sorting_algorithm, unsorted_list)
-                results.append((sorting_algorithm, sorted_list))
+                output_dict = sad.sort(sorting_algorithm, unsorted_list)
+                results.append((sorting_algorithm, output_dict))
+
+    # Print output
     io.formatted_output(results)
+
+    # Calculate average sorting time per sorting algorithm
+    def average(lst):
+        return sum(lst) / len(lst)
+
+    avg_elapsed_time_list = []
+    for sorting_algorithm in validated_sorting_algorithms:
+        avg_elapsed_time = 0
+        elapsed_time_list = []
+        for item in results:
+            aux_sorting_algorithm = item[0]
+            if sorting_algorithm == aux_sorting_algorithm:
+                elapsed_time = item[1]["elapsed_time"]
+                elapsed_time_list.append(elapsed_time)
+        avg_elapsed_time = average(elapsed_time_list)
+        print("\n- " + sorting_algorithm + " average elapsed time: " +
+              str(avg_elapsed_time))
+        avg_elapsed_time_list.append((sorting_algorithm, avg_elapsed_time))
+
+    # Calculate min avg sorting time per sorting algorithm
+    for item in avg_elapsed_time_list:
+        print(item[0])
+        truena
 
 
 if __name__ == "__main__":
