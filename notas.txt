@@ -1,0 +1,8 @@
+1.- Si le agrego un espacio a los elementos de una lista, la condición que evita ordenar listas con elementos de diferente tipo de dato no se cumple.
+    -> Ejemplo:
+    ...
+    unsorted_lists=[5,6,7,2,9,4,7,1]|[5,4,5,3,2,678,445]|[23,23,4]|[2]|[Pedro,Juan,Israel, 1]|[{tipo:orange, peso:10, tamaño:1}
+    , {}, {}]
+    ...
+    Ordena las listas hasta [Pedro,Juan,Israel, 1]
+2.- Falta implementar guardar output en un archivo txt mediante -o
