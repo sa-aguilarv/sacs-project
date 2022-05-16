@@ -35,7 +35,7 @@ def main():
         sorting_algorithm.lower() for sorting_algorithm in sorting_algorithms
     ]
     valid_sorting_algorithms = [
-        "selection", "bubble", "insertion", "topological", "merge", "quick"
+        "selection", "bubble", "insertion", "merge", "quick"
     ]
     invalid_sorting_algorithms = [
         sorting_algorithm for sorting_algorithm in sorting_algorithms

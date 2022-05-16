@@ -11,14 +11,34 @@ import time
 
 
 def sort(sorting_algorithm: str, unsorted_list: list) -> list:
-    sorted_list = None
+    """_summary_
+
+    Args:
+        sorting_algorithm (str): _description_
+        unsorted_list (list): _description_
+
+    Returns:
+        list: _description_
+    """
+    output_dict = None
     if sorting_algorithm == "quick":
-        sorted_list = quick_sort(unsorted_list)
+        output_dict = quick_sort(unsorted_list)
     elif sorting_algorithm == "bubble":
-        sorted_list = bubble_sort(unsorted_list)
+        output_dict = bubble_sort(unsorted_list)
     elif sorting_algorithm == "selection":
-        sorted_list = selection_sort(unsorted_list)
-    return sorted_list
+        output_dict = selection_sort(unsorted_list)
+    elif sorting_algorithm == "insertion":
+        output_dict = insertion_sort(unsorted_list)
+    elif sorting_algorithm == "merge":
+        start_time = time.perf_counter()
+        merge_sort(unsorted_list)
+        end_time = time.perf_counter()
+        elapsed_time = end_time - start_time
+        output_dict = {
+            "sorted_list": unsorted_list,
+            "elapsed_time": elapsed_time
+        }
+    return output_dict
 
 
 def quick_sort(unsorted_list: list) -> dict:
@@ -83,6 +103,14 @@ def bubble_sort(unsorted_list: list) -> dict:
 
 
 def selection_sort(unsorted_list: list) -> dict:
+    """_summary_
+
+    Args:
+        unsorted_list (list): _description_
+
+    Returns:
+        dict: _description_
+    """
     sorted_list = unsorted_list.copy()
     list_length = len(unsorted_list)
     # Traverse through all array elements
@@ -104,6 +132,83 @@ def selection_sort(unsorted_list: list) -> dict:
     elapsed_time = end_time - start_time
     output_dict = {"sorted_list": sorted_list, "elapsed_time": elapsed_time}
     return output_dict
+
+
+def insertion_sort(unsorted_list: list) -> dict:
+    """_summary_
+
+    Args:
+        unsorted_list (list): _description_
+
+    Returns:
+        dict: _description_
+    """
+    sorted_list = unsorted_list.copy()
+    list_length = len(unsorted_list)
+    # Traverse through all array elements
+    start_time = time.perf_counter()
+    # Traverse through 1 to len(arr)
+    for i in range(1, list_length):
+        key = sorted_list[i]
+        # Move elements of arr[0..i-1], that are
+        # greater than key, to one position ahead
+        # of their current position
+        j = i - 1
+        while j >= 0 and key < sorted_list[j]:
+            sorted_list[j + 1] = sorted_list[j]
+            j -= 1
+        sorted_list[j + 1] = key
+    end_time = time.perf_counter()
+
+    elapsed_time = end_time - start_time
+    output_dict = {"sorted_list": sorted_list, "elapsed_time": elapsed_time}
+    return output_dict
+
+
+def merge_sort(myList):
+    """_summary_
+
+    Args:
+        myList (_type_): _description_
+    """
+    if len(myList) > 1:
+        mid = len(myList) // 2
+        left = myList[:mid]
+        right = myList[mid:]
+
+        # Recursive call on each half
+        merge_sort(left)
+        merge_sort(right)
+
+        # Two iterators for traversing the two halves
+        i = 0
+        j = 0
+
+        # Iterator for the main list
+        k = 0
+
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                # The value from the left half has been used
+                myList[k] = left[i]
+                # Move the iterator forward
+                i += 1
+            else:
+                myList[k] = right[j]
+                j += 1
+            # Move to the next slot
+            k += 1
+
+        # For all the remaining values
+        while i < len(left):
+            myList[k] = left[i]
+            i += 1
+            k += 1
+
+        while j < len(right):
+            myList[k] = right[j]
+            j += 1
+            k += 1
 
 
 def swap_values(i: int, j: int, list_to_swap: list):
