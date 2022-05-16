@@ -7,11 +7,8 @@
         Access point to the SACS system. It controls all the program flow.
 """
 
-from email.headerregistry import AddressHeader
-from logging import exception
-from queue import Empty
-from warnings import catch_warnings
 import sorting_algorithms as sa
+import sorting_algorithms_desc as sad
 import input_output as io
 import re
 
@@ -93,11 +90,16 @@ def main():
     # Start sorting comparison
     validated_unsorted_lists = validated_int_unsorted_lists + validated_str_unsorted_lists
     results = []
-    for sorting_algorithm in validated_sorting_algorithms:
-        for unsorted_list in validated_unsorted_lists:
-            sorted_list = sa.sort(sorting_algorithm, unsorted_list)
-            results.append((sorting_algorithm, sorted_list))
-
+    if sorting_order == "asc":
+        for sorting_algorithm in validated_sorting_algorithms:
+            for unsorted_list in validated_unsorted_lists:
+                sorted_list = sa.sort(sorting_algorithm, unsorted_list)
+                results.append((sorting_algorithm, sorted_list))
+    elif sorting_order == "desc":
+        for sorting_algorithm in validated_sorting_algorithms:
+            for unsorted_list in validated_unsorted_lists:
+                sorted_list = sad.sort(sorting_algorithm, unsorted_list)
+                results.append((sorting_algorithm, sorted_list))
     io.formatted_output(results)
 
 

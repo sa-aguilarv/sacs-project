@@ -63,7 +63,7 @@ def quick_sort(unsorted_list: list) -> dict:
     for i in range(sorted_list_length - 1):
         minimum = i
         for j in range(i + 1, sorted_list_length):
-            if sorted_list[j] < sorted_list[minimum]:
+            if sorted_list[j] > sorted_list[minimum]:
                 minimum = j
         swap_values(i, minimum, sorted_list)
     end_time = time.perf_counter()
@@ -93,7 +93,7 @@ def bubble_sort(unsorted_list: list) -> dict:
     start_time = time.perf_counter()
     for i in range(list_length - 1):
         for j in range(list_length - 1 - i):
-            if sorted_list[j + 1] < sorted_list[j]:
+            if sorted_list[j + 1] > sorted_list[j]:
                 swap_values(j, j + 1, sorted_list)
     end_time = time.perf_counter()
 
@@ -120,7 +120,7 @@ def selection_sort(unsorted_list: list) -> dict:
         # unsorted array
         min_idx = i
         for j in range(i + 1, list_length):
-            if sorted_list[min_idx] > sorted_list[j]:
+            if sorted_list[min_idx] < sorted_list[j]:
                 min_idx = j
 
         # Swap the found minimum element with
@@ -154,7 +154,7 @@ def insertion_sort(unsorted_list: list) -> dict:
         # greater than key, to one position ahead
         # of their current position
         j = i - 1
-        while j >= 0 and key < sorted_list[j]:
+        while j >= 0 and key > sorted_list[j]:
             sorted_list[j + 1] = sorted_list[j]
             j -= 1
         sorted_list[j + 1] = key
@@ -188,7 +188,7 @@ def merge_sort(myList):
         k = 0
 
         while i < len(left) and j < len(right):
-            if left[i] <= right[j]:
+            if left[i] >= right[j]:
                 # The value from the left half has been used
                 myList[k] = left[i]
                 # Move the iterator forward
